@@ -1,5 +1,4 @@
 l, b = map(int, input().split())
-n = int(input())
 matrix = []
 
 for _ in range(b):
@@ -18,9 +17,15 @@ for i in range(l):
                 if j + y_d in range(b) and i + x_d in range(l) and matrix[j+y_d][i+x_d] != 'm':
                     matrix[j+y_d][i+x_d] += 1
 
-count = 0
-for i in matrix[n]:
-    if i != 'm':
-        count += i
-    
-print(count)
+largest = (0, 0)
+for i, j in enumerate(matrix):
+    count = 0
+    for k in j:
+
+        if k != 'm':
+            count += k
+        
+        if count > largest[1]:
+            largest = (i+1, count)
+
+print(*largest)
